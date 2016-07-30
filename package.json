@@ -11,7 +11,6 @@
     "axios": "^0.12.0",
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
-    "ejs": "^2.4.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "glue": "^3.3.0",
     "hapi": "^13.4.1",
@@ -22,9 +21,7 @@
     "react-router": "^2.5.0",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
-    "redux-saga": "^0.11.0",
-    "vision": "^4.1.0",
-    "visionary": "^6.0.0"
+    "redux-saga": "^0.11.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

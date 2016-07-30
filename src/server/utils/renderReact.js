@@ -1,9 +1,14 @@
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import routes from '../../routes';
-import rootSaga from '../../sagas';
-import configureStore from '../../store';
+import HTMLDocument, { doctype } from 'server/views/HTMLDocument';
+import routes from 'routes';
+import rootSaga from 'sagas';
+import configureStore from 'store';
+
+function renderApplication(props) {
+    return doctype + renderToStaticMarkup(<HTMLDocument {...props} />);
+}
 
 export default function(request, reply) {
 	const store = configureStore();
@@ -21,10 +26,10 @@ export default function(request, reply) {
 			);
 
 			store.runSaga(rootSaga).done.then(() => {
-				const state = `window.__INITIAL_STATE__ = ${JSON.stringify(state)};`;
+				const state = store.getState();
                 const html = renderToString(rootComponent);
 
-				reply.view('index', {html, state});
+				reply(renderApplication({state, html}));
 			});
 
 			// Trigger sagas for component to run
