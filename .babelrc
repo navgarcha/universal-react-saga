@@ -1,0 +1,13 @@
+{
+	"presets": [
+		"stage-0",
+		"es2015",
+		"react"
+	],
+	"plugins": [
+		"react-require",
+		"transform-class-properties",
+		"transform-runtime",
+		["resolver", {"resolveDirs": ["src"]}]
+	]
+}

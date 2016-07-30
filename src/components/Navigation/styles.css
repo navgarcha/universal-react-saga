@@ -1,0 +1,9 @@
+.navigation a {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+}
+
+.navigation .active {
+	font-weight: bold;
+	text-decoration: none;
+}
