@@ -12,10 +12,6 @@ export default class Photos extends Component {
 		this.props.requestPhotos();
 	}
 
-	componentWillUnmount() {
-		this.props.cleanupPhotos();
-	}
-
 	render() {
 		return (
 			<div>

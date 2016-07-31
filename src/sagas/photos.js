@@ -1,7 +1,7 @@
-import { takeLatest } from 'redux-saga';
-import { take, race, call, put, select } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga';
+import { call, put, select } from 'redux-saga/effects';
 import { request } from 'api';
-import { PHOTOS_REQUEST, PHOTOS_CLEANUP, receivePhotos } from 'actions/photos';
+import { PHOTOS_REQUEST, receivePhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 
 function* requestPhotos({ id, uri }) {
@@ -9,16 +9,8 @@ function* requestPhotos({ id, uri }) {
 
 	if (!cachedPhotos) {
 		try {
-			const { photos, cancel } = yield race({
-				photos: call(request, uri),
-				cancel: take(PHOTOS_CLEANUP)
-			});
-
-			if (photos) {
-				yield put(receivePhotos(id, photos));
-			} else if (cancel) {
-				console.log('Photos request cancelled!');
-			}
+			const photos = yield call(request, uri)
+			yield put(receivePhotos(id, photos));
 		} catch (error) {
 			console.log('Photos request failed!');
 		}
@@ -26,5 +18,5 @@ function* requestPhotos({ id, uri }) {
 }
 
 export function* watchRequestPhotos() {
-	yield* takeLatest(PHOTOS_REQUEST, requestPhotos);
+	yield* takeEvery(PHOTOS_REQUEST, requestPhotos);
 }
