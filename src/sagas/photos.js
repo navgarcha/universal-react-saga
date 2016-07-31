@@ -12,9 +12,11 @@ function* requestPhotos({ id, uri }) {
 			const photos = yield call(request, uri)
 			yield put(receivePhotos(id, photos));
 		} catch (error) {
-			console.log('Photos request failed!');
+			console.log('Photos request failed');
 		}
-	}
+	} else {
+        console.log('Photos already in store');
+    }
 }
 
 export function* watchRequestPhotos() {

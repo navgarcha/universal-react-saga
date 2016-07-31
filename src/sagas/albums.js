@@ -12,9 +12,11 @@ function* requestAlbums({ uri }) {
 			const albums = yield call(request, uri);
 			yield put(receiveAlbums(albums));
 		} catch (error) {
-			console.log('Albums request failed!');
+			console.log('Albums request failed');
 		}
-	}
+	} else {
+        console.log('Albums already in store');
+    }
 }
 
 export function* watchRequestAlbums() {
