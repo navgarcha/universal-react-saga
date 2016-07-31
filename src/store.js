@@ -8,7 +8,7 @@ const middleware = [sagaMiddleware];
 
 // Add logging for client
 if (typeof window !== 'undefined' && window.document) {
-	middleware.push(createLogger({collapsed: true}))
+	middleware.push(createLogger({collapsed: true}));
 }
 
 export default (initialState) => {

@@ -1,5 +1,7 @@
 # Universal React Saga
 
+https://medium.com/@navgarcha7891/react-server-side-rendering-with-simple-redux-store-hydration-9f77ab66900a
+
 ## Useful commands
 * Dependency install `npm install`
 * Build source `npm run build`
