@@ -3,7 +3,11 @@ import { Link } from 'react-router';
 
 export default class AlbumsList extends Component {
 	static propTypes = {
-		albums: PropTypes.array,
+        requestAlbums: PropTypes.func.isRequired,
+		albums: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired
+        }))
 	}
 
 	componentWillMount() {
@@ -13,8 +17,8 @@ export default class AlbumsList extends Component {
 	render() {
 		return (
 			<div>
-				{this.props.albums ? this.props.albums.map(({ id, title }, index) =>
-					<div key={index}>
+				{this.props.albums ? this.props.albums.map(({ id, title }) =>
+					<div key={id}>
 						<Link to={`/albums/${id}`}>{title}</Link>
 					</div>
 				) : 'Loading...'}

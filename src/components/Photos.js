@@ -2,10 +2,11 @@ import { Component, PropTypes } from 'react';
 
 export default class Photos extends Component {
 	static propTypes = {
-		photos: PropTypes.arrayOf(PropTypes.shape({
-			id: PropTypes.number.isRequired,
-			thumbnailUrl: PropTypes.string.isRequired
-	    }))
+        requestPhotos: PropTypes.func.isRequired,
+        photos: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            thumbnailUrl: PropTypes.string.isRequired
+        }))
 	}
 
 	componentWillMount() {
@@ -17,8 +18,8 @@ export default class Photos extends Component {
 			<div>
 				<h2>Album {this.props.params.albumId}</h2>
 
-				{this.props.photos ? this.props.photos.map((photo) =>
-					<img key={photo.id} src={photo.thumbnailUrl} />
+				{this.props.photos ? this.props.photos.map(({ id, thumbnailUrl }) =>
+					<img key={id} src={thumbnailUrl} />
 				) : 'Loading...'}
 			</div>
 		);
