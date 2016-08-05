@@ -33,7 +33,6 @@ export default {
 
 	plugins: [
         new webpack.DefinePlugin({'process.env.BROWSER': true}),
-
 		new ExtractTextPlugin('main.css'),
 		new CleanWebpackPlugin([buildPath], {root: path.resolve(__dirname, '..')})
 	]
